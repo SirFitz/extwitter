@@ -8,7 +8,7 @@ defmodule ExTwitter.Parser do
   """
   def parse_tweet(object) do
     tweet = struct(ExTwitter.Model.Tweet, object)
-    user  = parse_user(tweet.user)
+    user  = parse_user(tweet.user) || nil
     %{tweet | user: user}
   end
 
