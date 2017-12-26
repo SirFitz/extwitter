@@ -57,7 +57,7 @@ defmodule ExTwitter.API.Base do
     response = ExTwitter.OAuth.request(method, url, params,
       oauth[:consumer_key], oauth[:consumer_secret], oauth[:access_token], oauth[:access_token_secret])
     case response do
-      {:error, reason} -> raise(ExTwitter.ConnectionError, reason: reason)
+      {:error, reason} -> reason |> parse_result
       r -> r |> parse_result
     end
   end
