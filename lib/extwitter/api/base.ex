@@ -99,7 +99,7 @@ defmodule ExTwitter.API.Base do
     if is_list(body) do
       body
     else
-      [body]
+      Map.get(:errors, :body)
     end
   end
 
