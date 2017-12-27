@@ -99,7 +99,7 @@ defmodule ExTwitter.API.Base do
     if is_list(body) do
       body
     else
-     [body]
+     body
     end
   end
 
