@@ -8,8 +8,8 @@ defmodule ExTwitter.Parser do
   """
   
   def parse_tweet(object) do
-    if Map.get(object, :errors) do
-      %{object}
+    if !is_list(object) do
+      object
     else
       tweet = struct(ExTwitter.Model.Tweet, object)
       user  = parse_user(tweet.user) || nil
