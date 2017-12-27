@@ -6,10 +6,15 @@ defmodule ExTwitter.Parser do
   @doc """
   Parse tweet record from the API response json.
   """
+  
   def parse_tweet(object) do
-    tweet = struct(ExTwitter.Model.Tweet, object)
-    user  = parse_user(tweet.user) || nil
-    %{tweet | user: user}
+    if Map.get(object, :errors) do
+      %{object}
+    else
+      tweet = struct(ExTwitter.Model.Tweet, object)
+      user  = parse_user(tweet.user) || nil
+      %{tweet | user: user}
+    end
   end
 
   @doc """
